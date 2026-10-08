@@ -1,8 +1,8 @@
-# Data Warehouse and Analytics Project
+# Sales & Customer Data Warehouse & ETL Pipeline
 Building a modern data ware house with sql server, including ETL processes, data modelling and analytics
 
-Welcome to the **Data Warehouse and Analytics Project** repository! 🚀
-This project demonstrates a comprehensive data warehousing and analytics solution, from building a data warehouse to generating actionable insights. Designed a porfolio project that highlights industy best practices in data engineering and analytics.
+Welcome to the **Sales & Customer Data Warehouse & ETL Pipeline** repository! 🚀
+Built a portfolio Sales & Customer Data Warehouse and ETL Pipeline, transforming CRM and ERP data into analytics-ready datasets for sales performance, customer behaviour, and product analysis while applying industry-standard data engineering and modelling practices.
 
 ---
 
