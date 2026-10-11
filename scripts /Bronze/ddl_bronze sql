@@ -1,0 +1,77 @@
+/*
+======================================================================
+DDL Script: Create Bronze Tables
+======================================================================
+Purpose:
+  Creates tables within the 'bronze' schema. 
+  Automatically drops existing tables if they already exist.
+
+Usage:
+  Run this script to redefine the DDL structure for 'bronze' tables.
+======================================================================
+*/
+
+
+Dropped table Bronze-crm_cust_info as the table is not under schemas and too similar to source table names 
+IF OBJECT_ID ('Bronze_crm_cust_info', 'u') IS NOT NULL
+      DROP TABLE Bronze_crm_cust_info;
+
+--Creating Tables for Source Dataset
+Create Table Bronze.crm_cust_info (
+	cst_id Int,
+	cst_key Nvarchar(50),
+	cst_firstname NVarchar(50),
+	cst_lastname NVarchar(50),
+	cst_marital_status NVarchar(50),
+	cst_gndr NVarchar(50),
+	cst_create_date Date
+);
+
+Create Table Bronze.crm_prd_info (
+	prd_id Int,
+	prd_key Nvarchar(50),
+	prd_nm NVarchar(50),
+	prd_cost INT,
+	prd_line NVarchar(50),
+	prd_start_dt Date,
+	prd_end_dt Date
+);
+
+
+Create Table Bronze.crm_sales_details (
+	sls_ord_num INT,
+	sls_prd_key INT,
+	sls_cust_id INT,
+	sls_order_dt INT,
+	sls_ship_dt Date,
+	sls_due_dt Date,
+	sls_sales INT,
+	sls_quantity INT,
+	sls_price INT
+);
+
+Create Table Bronze.erp_CUST_AZ12 (
+	CID Nvarchar(50),
+	BDATE Date,
+	GEN Nvarchar(50)
+);
+
+Create Table Bronze.erp_LOC_A101 (
+	CID Nvarchar(50),
+	CNTRY Nvarchar(50)
+);
+
+
+Create Table Bronze.erp_PX_CAT_G1V2 (
+	ID Nvarchar(50),
+	CAT Nvarchar(50),
+    SUBCAT Nvarchar(50),
+    MAINTENANCE Nvarchar(50)
+);
+
+  --Used ALTER TABLE to fix the data type in Bronze.crm_sales_details table, as I used the wrong data type in 2 columns
+ALTER TABLE Bronze.crm_sales_details
+ALTER COLUMN sls_ord_num NVARCHAR(50);
+
+ALTER TABLE Bronze.crm_sales_details
+ALTER COLUMN sls_prd_key NVARCHAR(50);
