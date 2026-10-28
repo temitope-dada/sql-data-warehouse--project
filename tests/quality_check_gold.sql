@@ -1,9 +1,37 @@
+/*
+================================================================================
+Quality Checks
+================================================================================
+Script Purpose:
+    This script performs various quality checks for data consistency, accuracy,
+    and standardization across the 'silver' schema. It includes checks for:
+     - Null or duplicate primary keys.
+     - Unwanted spaces in string fields.
+     - Data standardization and consistency.
+     - Invalid date ranges and orders.
+     - Data consistency between related fields.
+
+Usage Notes:
+     - Run these checks after data loading in the gold Layer.
+     - Investigate and resolve any discrepancies found during the checks.
+================================================================================
+*/
+
+-- ============================================================================
+-- Checking 'gold.crm_fact_sales'
+================================================================================
+
 --foreign key intergrity
 Select
 * From Gold.fact_sales f
 Left join Gold.dim_customers c
 on c.customer_key = f.customer_key
 Where c.customer_key is null
+
+  
+-- ============================================================================
+-- Checking 'gold.dim_product'
+================================================================================
 
 --Checking for duplicates in product tables using prd_key
 Select prd_key, count (*) From(
